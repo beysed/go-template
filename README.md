@@ -1,2 +1,5 @@
-﻿bazel run @rules_go//go -- mod init ppp
+﻿### notes
+
+bazel run @rules_go//go -- mod init ppp
+
 bazel run @rules_go//go -- mod tidy -v
