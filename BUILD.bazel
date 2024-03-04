@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test", "nogo")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix ppp
+gazelle(name = "gazelle")
+
+nogo(
+    name = "my_nogo",
+    visibility = ["//visibility:public"], # must have public visibility
+)
+
+go_library(
+    name = "ppp",
+    srcs = ["ppp.go"],
+    importpath = "ppp",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "ppp_test",
+    srcs = ["ppp_test.go"],
+    embed = [":ppp"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)
